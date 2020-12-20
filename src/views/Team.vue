@@ -1,10 +1,10 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col md="4">
-        <v-card class="float-left" width="100%">
+      <v-col md="3">
+        <v-card width="100%">
         <v-navigation-drawer floating permanent width="100%">
-          <v-list rounded nav>
+          <v-list shaped nav>
             <v-list-item>
               <v-list-item-content>
                 <v-list-item-title>
@@ -32,119 +32,141 @@
             </v-list-item>
           </v-list>
         </v-navigation-drawer>
-        <v-btn fab color="secondary" small class="ma-3" to="/school">
+        <v-btn fab color="secondary" small class="ml-4 mb-4" to="/school">
           <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
         </v-card>
       </v-col>
-      <v-spacer></v-spacer>
-      <v-col md="6">
+      <v-col md="6" offset="1">
         <v-card v-if="selected_team!=null">
-          <v-card-title>{{ selected_team.name }}</v-card-title>
+          <v-card-title><h1>{{ selected_team.name }}</h1></v-card-title>
           <v-card-text>
-            <p>Age group: {{ selected_team.ageGroup }}</p>
-            <p>Gender: {{ selected_team.genderGroup }}</p>
-          </v-card-text>
-          <v-container liquid>
-            <div
-              class="ma-2 d-inline-flex justify-start flex-wrap"
-            >
-              <v-card
-                v-for="coach in coaches"
-                :key="coach.id"
-                class="ma-1"
-              >
-              <v-card-title>
-                <v-list-item>
-                  <v-avatar 
-                    size="70" 
-                    color="indigo"
-                    rounded
-                    v-if="coach.image_src==null"
-                  >
-                    <v-icon dark>
-                      mdi-account-circle
-                    </v-icon>
-                  </v-avatar>
-                  <v-avatar
-                    size="70"
-                    rounded
-                    v-else
-                  >
-                    <v-img :src="coach.image_src" contain>
-                      <template v-slot:placeholder>
-                        <v-row
-                          class="fill-height ma-0"
-                          align="center"
-                          justify="center"
-                        >
-                          <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                        </v-row>
-                      </template>
-                    </v-img>
-                  </v-avatar>
-                  <v-list-item-content class="ml-4">
-                    <v-list-item-title>
-                      {{ coach.coach_obj.name }}
-                    </v-list-item-title>
-                    <v-list-item-subtitle>
-                      {{ coach.coach_obj.position }}
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-card-title>
-              </v-card>
-            </div>
-            <v-expansion-panels popout class="my-4">
-              <v-expansion-panel
-                v-for="(position,i) in team_positions"
-                :key="i">
-                <v-expansion-panel-header>
-                  {{ position }}
-                </v-expansion-panel-header>
-                <v-expansion-panel-content>
-                  <div class="mx-2 d-inline-flex justify-start flex-wrap">
-                    <v-card 
-                      v-for="member in membersInPosition(position)"
-                      :key="member.member_obj.id" 
-                      class="ma-1"
-                    >
-                      <v-card-title>
-                        <v-avatar 
-                          size="70" 
+            <v-container liquid>
+              <p>Age group: {{ selected_team.ageGroup }}</p>
+              <p>Gender: {{ selected_team.genderGroup }}</p>
+              <div class="d-inline-flex justify-start flex-wrap">
+                <v-card
+                    v-for="coach in coaches"
+                    :key="coach.id"
+                    class="mr-4 my-1"
+                >
+                  <v-card-title>
+                    <v-list-item>
+                      <v-avatar
+                          size="64"
                           color="indigo"
                           rounded
-                          v-if="member.image_src==null"
-                        >
-                          <v-icon dark>
-                            mdi-account-circle
-                          </v-icon>
-                        </v-avatar>
-                        <v-avatar
+                          v-if="coach.image_src==null"
+                      >
+                        <v-icon dark>
+                          mdi-account-circle
+                        </v-icon>
+                      </v-avatar>
+                      <v-avatar
                           size="70"
                           rounded
                           v-else
-                        >
-                          <v-img :src="member.image_src" contain>
-                            <template v-slot:placeholder>
-                              <v-row
+                      >
+                        <v-img :src="coach.image_src" contain>
+                          <template v-slot:placeholder>
+                            <v-row
                                 class="fill-height ma-0"
                                 align="center"
                                 justify="center"
-                              >
-                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                              </v-row>  
-                            </template>
-                          </v-img>
-                        </v-avatar>
-                        <h4 class="ml-3">{{ member.member_obj.name }}</h4>
-                      </v-card-title>
-                    </v-card>
-                  </div>
-                </v-expansion-panel-content>
-              </v-expansion-panel>
-            </v-expansion-panels>
-          </v-container>
+                            >
+                              <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                            </v-row>
+                          </template>
+                        </v-img>
+                      </v-avatar>
+                      <v-list-item-content class="ml-4">
+                        <v-list-item-title>
+                          {{ coach.coach_obj.name }}
+                        </v-list-item-title>
+                        <v-list-item-subtitle>
+                          {{ coach.coach_obj.position }}
+                        </v-list-item-subtitle>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-card-title>
+                </v-card>
+              </div>
+              <v-expansion-panels class="mx-auto my-4" multiple accordion>
+                <v-expansion-panel
+                    v-for="(position,i) in team_positions"
+                    :key="i"
+                >
+                  <v-expansion-panel-header>
+                    {{ position }}
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    <div class="mx-2 d-inline-flex justify-start flex-wrap">
+                      <v-card
+                          v-for="member in membersInPosition(position)"
+                          :key="member.member_obj.id"
+                          class="mx-2 my-1"
+                      >
+                        <v-card-title>
+                          <v-avatar
+                              size="70"
+                              color="indigo"
+                              rounded
+                              v-if="member.image_src==null"
+                          >
+                            <v-icon dark>
+                              mdi-account-circle
+                            </v-icon>
+                          </v-avatar>
+                          <v-avatar
+                              size="70"
+                              rounded
+                              v-else
+                          >
+                            <v-img :src="member.image_src" contain>
+                              <template v-slot:placeholder>
+                                <v-row
+                                    class="fill-height ma-0"
+                                    align="center"
+                                    justify="center"
+                                >
+                                  <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                </v-row>
+                              </template>
+                            </v-img>
+                          </v-avatar>
+                          <h4 class="ml-3">{{ member.member_obj.name }}</h4>
+                        </v-card-title>
+                      </v-card>
+                    </div>
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+              </v-expansion-panels>
+              <div class="mx-auto my-4">
+                <v-card>
+                  <v-simple-table>
+                    <thead>
+                    <tr>
+                      <th>Win</th>
+                      <th>Draw</th>
+                      <th>Lost</th>
+                      <th>Total</th>
+                      <th>Score</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>{{ selected_team.win }}</td>
+                      <td>{{ selected_team.draw }}</td>
+                      <td>{{ selected_team.lost }}</td>
+                      <td>{{ selected_team.totalEvent }}</td>
+                      <td>{{ selected_team.score }}</td>
+                    </tr>
+                    </tbody>
+                  </v-simple-table>
+                </v-card>
+              </div>
+            </v-container>
+          </v-card-text>
         </v-card>
       </v-col>
       <v-spacer></v-spacer>

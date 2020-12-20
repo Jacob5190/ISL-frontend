@@ -41,14 +41,26 @@ const routes = [
     component: () => import(/* webpackChunkName: "page" */ '../views/Team.vue')
   },
   {
+    path: '/result',
+    name: 'Result',
+    component: () => import(/* webpackChunkName: "page" */ '../views/Game.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import(/* webpackChunkName: "page" */ '../views/login.vue')
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: () => import(/* webpackChunkName: "page" */ '../views/Admin.vue'),
+    meta: {
+      requireLogin: true
+    }
   }
 ]
 
 const router = new VueRouter({
   routes
 })
-
 export default router

@@ -18,14 +18,14 @@
       </v-list>
     </v-container>
     <v-divider></v-divider>
-    <container fluid>
+    <v-container fluid>
       <v-file-input
         show-size
         label="File Upload"
         v-model="file"
       ></v-file-input>
       <v-btn color="success" @click="uploadFile">Upload</v-btn>
-    </container>
+    </v-container>
   </v-card>
 </template>
 
@@ -38,8 +38,10 @@ export default {
     file: null
   }),
   mounted: function() {
-    this.$axios.get('/api/document').then(res => {
+    const url = "/api/document"
+    this.$axios.get(url).then(res => {
       const value = res.data
+      console.log(value)
       let result = []
       for (let i = 0; i < value.length; i++) {
         result.push({
@@ -65,7 +67,9 @@ export default {
       if (this.file) {
         let formdata = new FormData()
         formdata.append('file', this.file)
-        this.$axios.post('/api/document', formdata).then(() => {
+        this.$axios.post('/api/admin/document', formdata, {
+          withCredentials: true
+        }).then(() => {
           console.log("Upload successfully")
         })
       }else {

@@ -1,10 +1,10 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col md="4">
+      <v-col md="3">
         <v-card class="float-left">
         <v-navigation-drawer floating permanent>
-          <v-list rounded nav>
+          <v-list shaped nav>
             <v-list-group
               v-for="school in schools"
               :key="school.id"
@@ -46,7 +46,7 @@
         </v-navigation-drawer>
         </v-card>
       </v-col>
-      <v-col md="5">
+      <v-col md="5" offset="1">
         <v-card v-if="schoolName!=null" class="px-2">
           <v-card-title>
             <span>{{ schoolName }}</span>
@@ -57,7 +57,7 @@
           </v-card-title>
           <div class="pa-4">
           <v-img
-            v-show="schoolImgPath!=null"
+            v-show="schoolImgPath != null"
             :src="schoolImgPath"
             contain
             class="ma-4"
@@ -65,7 +65,6 @@
           </div>
         </v-card>
       </v-col>
-      <v-spacer></v-spacer>
     </v-row>
   </v-container>
 </template>
@@ -89,10 +88,11 @@ export default {
   methods: {
     handleRoute(schoolId, sportId) {
       this.$router.push({
-        path: '/school/team', query: {
-          schoolId: schoolId,
-          sportId: sportId
-        }
+          path: '/school/team',
+          query: {
+            schoolId: schoolId,
+            sportId: sportId
+          }
       })
     },
     getSchoolList() {

@@ -33,8 +33,9 @@ export default {
       if (this.file) {
         let formdata = new FormData()
         formdata.append('file', this.file)
-        this.$axios.post('/api/image', formdata).then(() => {
+        this.$axios.post('/api/admin/image', formdata).then(() => {
           console.log("Upload successfully")
+
         })
       }else {
         console.log("Empty selection")

@@ -17,15 +17,6 @@
         </v-list-item-group>
       </v-list>
     </v-container>
-    <v-divider></v-divider>
-    <v-container fluid>
-      <v-file-input
-        show-size
-        label="File Upload"
-        v-model="file"
-      ></v-file-input>
-      <v-btn color="success" @click="uploadFile">Upload</v-btn>
-    </v-container>
   </v-card>
 </template>
 
@@ -34,8 +25,7 @@
 export default {
   data: () => ({
     selected: null,
-    docs: [],
-    file: null
+    docs: []
   }),
   mounted: function() {
     const url = "/api/document"
@@ -63,19 +53,7 @@ export default {
       a.download = doc.fileName
       a.click();
     },
-    uploadFile() {
-      if (this.file) {
-        let formdata = new FormData()
-        formdata.append('file', this.file)
-        this.$axios.post('/api/admin/document', formdata, {
-          withCredentials: true
-        }).then(() => {
-          console.log("Upload successfully")
-        })
-      }else {
-        console.log("Empty selection")
-      }
-    }
+
   }
 }
 </script>

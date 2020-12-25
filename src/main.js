@@ -13,9 +13,7 @@ axios.defaults.withCredentials = true;
 Vue.use(Vuetify)
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requireLogin)) {
-    console.log(to)
     axios.get("/api/isLogin").then(res => {
-      console.log(res.data)
       if (res.data == true) {
         next()
       } else {

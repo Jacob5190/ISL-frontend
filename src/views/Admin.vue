@@ -23,6 +23,10 @@
           </v-navigation-drawer>
         </v-card>
       </v-col>
+      <v-col cols="8">
+        <router-view></router-view>
+      </v-col>
+      <v-spacer></v-spacer>
     </v-row>
   </v-container>
 </template>

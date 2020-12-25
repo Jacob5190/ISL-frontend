@@ -43,7 +43,7 @@ const routes = [
   {
     path: '/result',
     name: 'Result',
-    component: () => import(/* webpackChunkName: "page" */ '../views/Game.vue')
+    component: () => import(/* webpackChunkName: "page" */ '../views/Result.vue')
   },
   {
     path: '/login',
@@ -56,7 +56,39 @@ const routes = [
     component: () => import(/* webpackChunkName: "page" */ '../views/Admin.vue'),
     meta: {
       requireLogin: true
-    }
+    },
+    children: [
+      {
+        path: 'gallery',
+        name: 'gallery-admin',
+        component: () => import(/* webpackChunkName: “page” */ '../views/admin/Gallery.vue')
+      },
+      {
+        path: 'calendar',
+        name: 'calendar-admin',
+        component: () => import(/* webpackChunkName: “page” */ '../views/admin/Calendar.vue')
+      },
+      {
+        path: 'document',
+        name: 'document-admin',
+        component: () => import(/* webpackChunkName: “page” */ '../views/admin/Document.vue')
+      },
+      {
+        path: 'contact',
+        name: 'contact-admin',
+        component: () => import(/* webpackChunkName: “page” */ '../views/admin/Contact.vue')
+      },
+      {
+        path: 'result',
+        name: 'result-admin',
+        component: () => import(/* webpackChunkName: “page” */ '../views/admin/Result.vue')
+      },
+      {
+        path: 'school',
+        name: 'school-admin',
+        component: () => import(/* webpackChunkName: “page” */ '../views/admin/School.vue')
+      }
+    ]
   }
 ]
 

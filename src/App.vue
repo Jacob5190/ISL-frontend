@@ -14,7 +14,7 @@
               </v-icon>
             </v-btn>
           </template>
-          <v-btn fab small icon v-on="openIssue">
+          <v-btn fab small icon href="https://github.com/Jacob5190/International-Sports-League-Website/issues">
             <v-icon>mdi-github</v-icon>
           </v-btn>
           <v-btn fab small icon to="/admin">
@@ -68,11 +68,6 @@ export default {
         { icon: 'mdi-email', title:'Contact', route:'/contact' }
       ],
       isl: require('./assets/ISL.png')
-    }
-  },
-  methods: {
-    openIssue() {
-      window.location.href = "https://github.com/Jacob5190/International-Sports-League-Website/issues"
     }
   }
 }

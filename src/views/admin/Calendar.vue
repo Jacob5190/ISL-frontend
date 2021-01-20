@@ -3,11 +3,11 @@
     <v-tabs>
       <v-tab>Upload Calendar Event</v-tab>
       <v-tab-item>
-        <v-card flat>
+        <v-card outlined>
           <v-card-text>
             <v-form>
               <v-menu
-                  v-model="menu2"
+                  v-model="menu"
                   :close-on-content-click="false"
                   :nudge-right="40"
                   transition="scale-transition"
@@ -35,7 +35,7 @@
       </v-tab-item>
       <v-tab>Delete Calendar Event</v-tab>
       <v-tab-item>
-        <v-card flat>
+        <v-card outlined>
           <v-card-text>
             <v-form>
               <v-select :items="eventId" label="ID" outlined v-model="selected_id" v-on:change="getCalendarEventById"></v-select>
@@ -49,6 +49,23 @@
         </v-card>
       </v-tab-item>
     </v-tabs>
+    <div class="text-center">
+      <v-snackbar
+        v-model="snackbar"
+        :timeout="2000"
+        >{{ snackbarMsg }}
+        <template v-slot:action="{ attrs }">
+          <v-btn
+              color="blue"
+              text
+              v-bind="attrs"
+              @click="snackbar = false"
+          >
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
+    </div>
   </v-container>
 </template>
 
@@ -61,7 +78,10 @@ export default {
       date: null,
       title: null,
       selected_id: null,
-      selected_event: null
+      selected_event: null,
+      snackbarMsg: null,
+      snackbar: false,
+      menu: false
     }
   },
   methods: {
@@ -74,8 +94,8 @@ export default {
       let formdata = new FormData()
       formdata.append("date", this.date)
       formdata.append("title", this.title)
-      this.$axios.post("/api/admin/calendar-event", formdata).then(res => {
-        console.log(res.data)
+      this.$axios.post("/api/admin/calendar-event", formdata).then(() => {
+        this.openSnackbar("Upload calendar event successfully.")
       })
     },
     getCalendarEventById() {
@@ -92,13 +112,17 @@ export default {
     deleteCalendarEvent() {
       if (this.selected_id != null) {
         this.$axios.delete('/api/admin/calendar-event/' + this.selected_id).then(() => {
-          alert("Delete calendar event successfully.")
+          this.openSnackbar("Delete calendar event successfully.")
         }).catch(() => {
           alert("Unknown error occurred.")
         })
       } else {
         alert("Delete calendar event failed, please input correct values.")
       }
+    },
+    openSnackbar(message) {
+      this.snackbarMsg = message
+      this.snackbar = true
     }
   },
   mounted() {

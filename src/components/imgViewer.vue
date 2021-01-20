@@ -36,7 +36,8 @@ export default {
       let paths = []
       for (let i = 0; i < value.length; i++) {
         paths.push({
-          src: "/img/" + value[i].fileName
+          image: value[i],
+          src: "/imgs/" + value[i].fileName
         })
       }
       this.updateImage(paths)
@@ -45,6 +46,7 @@ export default {
   methods: {
     updateImage (images) {
       this.imgs = images
+      console.log(this.imgs)
     }
   }
 }

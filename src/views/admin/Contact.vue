@@ -3,7 +3,7 @@
     <v-tabs>
       <v-tab>Create Contact</v-tab>
       <v-tab-item>
-        <v-card flat>
+        <v-card>
           <v-card-text>
             <v-form>
               <v-text-field label="Title" v-model="new_title"></v-text-field>
@@ -17,7 +17,7 @@
       </v-tab-item>
       <v-tab>Update Contact</v-tab>
       <v-tab-item>
-        <v-card flat>
+        <v-card>
           <v-card-text>
             <v-form>
               <v-select :items="contactId" label="ID" outlined v-model="selected_id" @change="getContactById"></v-select>
@@ -38,7 +38,7 @@
       </v-tab-item>
       <v-tab>Delete Contact</v-tab>
       <v-tab-item>
-        <v-card flat>
+        <v-card>
           <v-card-text>
             <v-form>
               <v-select :items="contactId" label="ID" outlined v-model="selected_id" v-on:change="getContactById"></v-select>

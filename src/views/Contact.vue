@@ -2,7 +2,7 @@
 <v-container>
   <v-row v-for="obj in info" :key='obj.name' justify="center">
     <v-col cols="8">
-      <v-card class="pa-4" outlined>
+      <v-card class="pa-4">
         <p class="display-1 text--primary">{{ obj.title }}</p>
         <div class="text--primary">
           <v-icon></v-icon>

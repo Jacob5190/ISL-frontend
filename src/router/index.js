@@ -36,7 +36,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "page" */ '../views/School.vue'),
   },
   {
-    path: '/school/team',
+    path: '/team',
     name: 'Team',
     component: () => import(/* webpackChunkName: "page" */ '../views/Team.vue')
   },
@@ -87,6 +87,11 @@ const routes = [
         path: 'school',
         name: 'school-admin',
         component: () => import(/* webpackChunkName: “page” */ '../views/admin/School.vue')
+      },
+      {
+        path: 'team',
+        name: 'team-admin',
+        component: () => import(/* webpackChunkName: "page" */ '../views/admin/Team.vue')
       }
     ]
   }

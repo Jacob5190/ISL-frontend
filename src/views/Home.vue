@@ -1,11 +1,23 @@
 <template>
-  <v-container>
-    <v-card>
-      <v-img :src='isl' contain class="mx-8"></v-img>
-      <v-card-title class="mx-auto">associates with</v-card-title>
-      <v-img :src='fss' contain></v-img>
-    </v-card>
-  </v-container>
+  <v-card>
+    <v-container>
+      <v-row justify="center">
+        <v-col cols="8">
+          <v-img :src='isl' contain max-height="300px" max-width="400px" class="mx-auto"></v-img>
+        </v-col>
+      </v-row>
+      <v-row justify="center" class="pt-2">
+        <v-col cols="8" class="text-center">
+          <h2>associates with</h2>
+        </v-col>
+      </v-row>
+      <v-row justify="center">
+        <v-col cols="8">
+          <v-img :src='fss' contain max-height="300px" max-width="400px" class="mx-auto"></v-img>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-card>
 </template>
 <script>
 

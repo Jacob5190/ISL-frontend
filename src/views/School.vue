@@ -1,9 +1,8 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col md="3">
-        <v-card class="float-left">
-        <v-navigation-drawer floating permanent>
+      <v-col cols="3">
+        <v-navigation-drawer absolute permanent bottom>
           <v-list shaped nav>
             <v-list-group
               v-for="school in schools"
@@ -44,10 +43,9 @@
             </v-list-group>
           </v-list>
         </v-navigation-drawer>
-        </v-card>
       </v-col>
-      <v-col md="5" offset="1">
-        <v-card v-if="schoolName!=null" class="px-2">
+      <v-col cols="5">
+        <v-card v-if="schoolName!=null" max-width="550px">
           <v-card-title>
             <span>{{ schoolName }}</span>
             <v-spacer></v-spacer>
@@ -88,7 +86,7 @@ export default {
   methods: {
     handleRoute(schoolId, sportId) {
       this.$router.push({
-          path: '/school/team',
+          path: '/team',
           query: {
             schoolId: schoolId,
             sportId: sportId
@@ -114,7 +112,8 @@ export default {
         let imgObj = res.data.imgObj
         this.schoolName = (schoolObj.name!="") ? schoolObj.name : null
         this.schoolLink = (schoolObj.schoolLink!="") ? schoolObj.schoolLink : null
-        this.schoolImgPath = (imgObj.fileName!="") ? "/img/" + imgObj.fileName : null
+        this.schoolImgPath = (imgObj.fileName!="") ? "/imgs/" + imgObj.fileName : null
+
       })
     },
     getInvitationSportList() {

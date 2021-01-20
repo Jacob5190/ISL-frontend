@@ -21,6 +21,7 @@
         <v-card flat>
           <v-card-text>
             <v-form>
+              <!--TODO: Change from showing id to showing file name-->
               <v-select :items="documentId" label="ID" outlined v-model="selected_id" v-on:change="getDocumentById"></v-select>
               <div v-if="selected_document != null">
                 <p> File name: {{ selected_document.originalFileName }} </p>
@@ -68,7 +69,7 @@ export default {
     },
     getDocumentById() {
       if (this.selected_id == null) {
-        alert("Please select document id")
+        alert("Please select a valid document id")
       } else {
         this.$axios.get('/api/document/' + this.selected_id).then(res => {
           this.selected_document = res.data

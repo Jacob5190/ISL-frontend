@@ -3,7 +3,7 @@
     <v-card class="pa-8">
       <div>
         <v-form>
-          <!--TODO: Finish result admin page-->
+          <!--TODO: Finish Team admin page-->
           <v-btn color="success" @click="update">Update</v-btn>
         </v-form>
       </div>
@@ -14,10 +14,7 @@
 
 <script>
 export default {
-  name: "adminResult",
-  methods: {
-    update() {}
-  }
+  name: "adminTeam"
 }
 </script>
 

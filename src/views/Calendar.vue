@@ -1,7 +1,9 @@
 <template>
-    <div>
-      <calendar></calendar>
-    </div>
+    <v-card>
+      <v-container fluid>
+        <calendar></calendar>
+      </v-container>
+    </v-card>
 </template>
 
 <script>

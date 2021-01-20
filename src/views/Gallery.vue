@@ -1,20 +1,14 @@
+<!--TODO: Rebuild Gallery page with separate categories-->
 <template>
-<container fluid>
-  <v-row>
-    <v-col cols='6' offset='3'>
-      <imageview></imageview>
-    </v-col>
-  </v-row>
-  <v-divider></v-divider>
-  <container fluid>
-    <v-file-input
-      show-size
-      label="Image Upload"
-      v-model="file"
-    ></v-file-input>
-    <v-btn color="success" @click="uploadFile">Upload</v-btn>
-  </container>
-</container>
+  <v-card>
+    <v-container fluid>
+      <v-row justify="center">
+        <v-col cols='6'>
+          <imageview></imageview>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-card>
 </template>
 
 <script>
@@ -33,6 +27,7 @@ export default {
       if (this.file) {
         let formdata = new FormData()
         formdata.append('file', this.file)
+        formdata.append('sportId')
         this.$axios.post('/api/admin/image', formdata).then(() => {
           console.log("Upload successfully")
 

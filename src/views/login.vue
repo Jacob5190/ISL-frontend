@@ -6,7 +6,6 @@
           <h2 class="text-center mb-6">ISL Administrator Login</h2>
           <v-form
             ref="form"
-            submit=""
             v-model="valid"
             lazy-validation
           >
@@ -49,8 +48,8 @@ export default {
       formdata.append('password', this.password)
       this.$axios.post("/api/login", formdata).then(res => {
         alert(res.data.msg)
-        this.$router.push("/")
-        location.reload()
+        this.$store.commit('login')
+        this.$router.push("/admin")
       }).catch(error => {
         alert(error.response.data.msg)
       })

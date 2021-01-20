@@ -39,6 +39,9 @@
           </v-card-actions>
         </v-card>
       </v-col>
+      <v-col cols="6" offset="1">
+        <!--TODO: View of game result data-->
+      </v-col>
     </v-row>
   </v-container>
 </template>

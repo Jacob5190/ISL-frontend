@@ -22,7 +22,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-row>
-      <v-col cols="8" offset="3">
+      <v-col cols="8" offset-sm="4" offset="3" offset-xl="2">
         <keep-alive>
           <router-view :key="key"></router-view>
         </keep-alive>

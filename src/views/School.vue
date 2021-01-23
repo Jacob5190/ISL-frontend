@@ -1,51 +1,49 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col cols="3">
-        <v-navigation-drawer absolute permanent bottom>
-          <v-list shaped nav>
-            <v-list-group
+      <v-navigation-drawer absolute permanent bottom>
+        <v-list shaped nav>
+          <v-list-group
               v-for="school in schools"
               :key="school.id"
               @click="showSchool(school.id)"
               prepend-icon="mdi-school"
-            >
+          >
+            <template v-slot:activator>
+              <v-list-item-title>{{ school.name }}</v-list-item-title>
+            </template>
+            <v-list-item link @click="handleRoute(school.id, 1)">
+              <v-list-item-icon><v-icon>mdi-basketball</v-icon></v-list-item-icon>
+              <v-list-item-title>Basketball</v-list-item-title>
+            </v-list-item>
+            <v-list-item link @click="handleRoute(school.id, 2)">
+              <v-list-item-icon><v-icon>mdi-soccer</v-icon></v-list-item-icon>
+              <v-list-item-title>Football</v-list-item-title>
+            </v-list-item>
+            <v-list-item link @click="handleRoute(school.id, 3)">
+              <v-list-item-icon><v-icon>mdi-volleyball</v-icon></v-list-item-icon>
+              <v-list-item-title>Volleyball</v-list-item-title>
+            </v-list-item>
+            <v-list-group sub-group no-action>
               <template v-slot:activator>
-                <v-list-item-title>{{ school.name }}</v-list-item-title>
+                <v-list-item-content>
+                  <v-list-item-title>Invitations</v-list-item-title>
+                </v-list-item-content>
               </template>
-              <v-list-item link @click="handleRoute(school.id, 1)">
-                <v-list-item-icon><v-icon>mdi-basketball</v-icon></v-list-item-icon>
-                <v-list-item-title>Basketball</v-list-item-title>
-              </v-list-item>
-              <v-list-item link @click="handleRoute(school.id, 2)">
-                <v-list-item-icon><v-icon>mdi-soccer</v-icon></v-list-item-icon>
-                <v-list-item-title>Football</v-list-item-title>
-              </v-list-item>
-              <v-list-item link @click="handleRoute(school.id, 3)">
-                <v-list-item-icon><v-icon>mdi-volleyball</v-icon></v-list-item-icon>
-                <v-list-item-title>Volleyball</v-list-item-title>
-              </v-list-item>
-              <v-list-group sub-group no-action>
-                <template v-slot:activator>
-                  <v-list-item-content>
-                    <v-list-item-title>Invitations</v-list-item-title>
-                  </v-list-item-content>
-                </template>
-                <v-list-item
+              <v-list-item
                   link
                   v-for="sport in invitations"
                   :key="sport.id"
                   @click="handleRoute(school.id, sport.id)"
-                >
+              >
                 <v-list-item-title v-text="sport.name"></v-list-item-title>
-                </v-list-item>
-              </v-list-group>
+              </v-list-item>
             </v-list-group>
-          </v-list>
-        </v-navigation-drawer>
-      </v-col>
-      <v-col cols="5">
-        <v-card v-if="schoolName!=null" max-width="550px">
+          </v-list-group>
+        </v-list>
+      </v-navigation-drawer>
+      <v-col cols="5" offset-sm="5" offset="3" offset-xl="2">
+        <v-card v-if="schoolName!=null" max-width="550px" min-width="350px">
           <v-card-title>
             <span>{{ schoolName }}</span>
             <v-spacer></v-spacer>
